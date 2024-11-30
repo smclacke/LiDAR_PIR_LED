@@ -6,27 +6,31 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 18:48:34 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 21:13:34 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <Arduino.h>
-# include <WiFi.h>
-# include <FastLED.h>
-# include <wire.h>
-# include <Adafruit_NeoPixel.h>
-# include <LiDAR_lite.h>
+/**
+ * @todo fix to have uniform as everything else
+ * check this works..
+ */
+
+
+#include <Arduino.h>
+#include <WiFi.h>
+#include <FastLED.h>
+#include <wire.h>
+#include <Adafruit_NeoPixel.h>
+#include <LiDAR_lite.h>
 
 // LiDAR configuration
-
 #define LiDAR_RX 16 // ESP32 TX 
 #define LiDAR_TX 17 // ESP32 RX
 
 // LED configuration
-
 #define LED_PIN 12 // GPIO connected to LED strip
-#define NUM_LEDS 60 // I think mine have 115 - check this
-CRGB	leds[NUM_LEDS]	// I don't know what this is
+#define NUM_LEDS 60 /** @todo I think mine have 115 - check this */
+CRGB	leds[NUM_LEDS]	/** @todo I don't know what this is */
 
 // read distance from TF-Luna
 int		readDistance()
@@ -51,6 +55,8 @@ int		readDistance()
 
 void	setup()
 {
+	/** @todo don't i need pinMode in/out specification? - both  */
+
 	// LiDAR initialisation
 	Serial2.begin(115200, SERIAL_8N1, LiDAR_RX, LiDAR_TX);	// hardware serial for LiDAR
 	

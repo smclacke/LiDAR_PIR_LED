@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   PIR.ino                                            :+:    :+:            */
+/*   Arduino_IRLZ.ino                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/30 17:24:45 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:10:01 by smclacke      ########   odam.nl         */
+/*   Created: 2024/11/30 17:45:39 by smclacke      #+#    #+#                 */
+/*   Updated: 2024/11/30 21:12:01 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Arduino.h>
-#include <WiFi.h>
-#include <wire.h>
 
-const int	pirPin = 13;
-const int	ledPin = 12;
+// brightness 0-255 | 255 full brightness
+
+const int		ledPin = 2;
 
 void	setup()
 {
 	Serial.begin(115200);
-	Serial.println("Testing PIR sensor");
+	Serial.println("Testing Arduino setup in combination with IRLZ44N");
 
-	pinMode(pirPin, INPUT);
 	pinMode(ledPin, OUTPUT);
-
-	delay(30000); 				// allow 30 seconds for the PIR sensor to stabilize
-	Serial.println("PIR sensor ready");
 }
 
 void	loop()
 {
-	int		motionDetected = digitalRead(pirPin);
-	
-	if (motionDetected == HIGH)
-	{
-		Serial.println("Motion detected on PIR");
-
-		digitalWrite(ledPin, HIGH);
-	}
-	else
-		digitalWrite(ledPin, LOW);
-	
-	delay(100);				// short delay to allow for rappid loops
+	analogWrite(ledPin, 128);
+	delay(1000);
+	analogWrite(ledPin, 255);
+	delay(1000);
 }
+
+/** @note using a PWM-compatible pin and you have a proper connection to the MOSFET gate. 
+ * Just ensure that the gate is connected to the Arduino PWM pin (e.g., pin 9), 
+ * the source is grounded, and the drain is connected to the load (e.g., an LED or motor) 
+ * and the power supply. 
+ */
