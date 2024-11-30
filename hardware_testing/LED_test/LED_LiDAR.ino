@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   LED_LiDAR_ESP.ino                                  :+:    :+:            */
+/*   LED_LiDAR.ino                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 18:39:12 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 18:48:34 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <wire.h>
 # include <Adafruit_NeoPixel.h>
 # include <LiDAR_lite.h>
-
 
 // LiDAR configuration
 

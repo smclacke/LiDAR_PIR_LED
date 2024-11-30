@@ -6,8 +6,10 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:33:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 17:33:43 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 18:49:53 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/projectName.h"
+# include "../include/projectName.h"
+
+// src code

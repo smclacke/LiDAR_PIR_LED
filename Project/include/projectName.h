@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:31:37 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 17:59:00 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 18:49:07 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <wire.h>				// if applicable, for 12C communication with LiDAR
 # include <Adafruit_NeoPixel.h>	// for LED effects
 # include <LiDAR_lite.h>		// for LiDAR functionality
-#include <HardwareSerial.h>		// for communication with UART device (LiDAR)
-#include <TF_Luna.h>			// if applicable for LiDAR functionality
+# include <HardwareSerial.h>		// for communication with UART device (LiDAR)
+# include <TF_Luna.h>			// if applicable for LiDAR functionality
 
