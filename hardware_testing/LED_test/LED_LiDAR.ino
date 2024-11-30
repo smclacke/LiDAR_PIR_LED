@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 18:17:48 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 18:39:12 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	setup()
 	FastLED.show();
 
 	Serial.begin(115200);
-	Serial.println("ESP32 motion and LiDAR light control");
+	Serial.println("ESP32 testing LED and LiDAR control");
 
 }
 
@@ -72,7 +72,7 @@ void	loop()
 	
 	if (distance > 0 && distance < 200)	// motion detected within 2 meters
 	{
-		Serial.print("Motion detected at distance: ");
+		Serial.print("Motion detected on LiDAR at distance: ");
 		Serial.println(distance);
 		
 		// light up LEDs with colour wave effect

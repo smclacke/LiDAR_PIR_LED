@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Arduino_IRLZ.ino                                   :+:    :+:            */
+/*   LED_PIR_ESP.ino                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/30 17:45:39 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 18:19:13 by smclacke      ########   odam.nl         */
+/*   Created: 2024/11/30 17:34:37 by smclacke      #+#    #+#                 */
+/*   Updated: 2024/11/30 18:37:34 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <Arduino.h>
+# include <WiFi.h>
+# include <FastLED.h>
+# include <wire.h>
+# include <Adafruit_NeoPixel.h>
+# include <LiDAR_lite.h>
 
-// brightness 0-255 | 255 full brightness
-
-int		ledPin = 9;
-
-void	setup()
-{
-	pinMode(ledPin, OUTPUT);
-}
-
-void	loop()
-{
-	analogWrite(ledPin, 128);
-	delay(10000);
-	analogWrite(ledPin, 255);
-	delay(10000);
-}
+// 	Serial.println("ESP32 testing LED and PIR control");

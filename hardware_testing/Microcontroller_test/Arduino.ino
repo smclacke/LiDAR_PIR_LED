@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sensors+LED.ino                                    :+:    :+:            */
+/*   testArduino.ino                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/11/30 17:34:37 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 17:40:50 by smclacke      ########   odam.nl         */
+/*   Created: 2024/11/30 17:36:48 by smclacke      #+#    #+#                 */
+/*   Updated: 2024/11/30 18:42:36 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 # include <WiFi.h>
 # include <FastLED.h>
 # include <wire.h>
-# include <Adafruit_NeoPixel.h>
-# include <LiDAR_lite.h>
+
+#define LED_PIN 2
+
+void	setup()
+{
+	pinMode(LED_PIN, OUTPUT);
+	Serial.println("Testing Arduino setup");
+}
+
+void	loop()
+{
+	digitalWrite(LED_PIN, HIGH);
+	delay(1000);
+	digitalWrite(LED_PIN, LOW);
+	delay(1000);
+}
 

@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:47:48 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 18:19:43 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 18:36:06 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	setup()
 	
 	// attach channel to GPIO pin
 	ledAttachPin(ledPin, ledChannel);
+	Serial.println("Testing ESP32 setup in combination with IRLZ44N");
 }
 
 void	loop()
