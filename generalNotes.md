@@ -12,6 +12,8 @@
 	for serial - must also init it iwith Serial.begin(baut rate)
 	if using Serial2 (for LiDAR), still need the initial Serial.begin() call
 
+4) MOSFET gate  = 14
+
 ------------------------------------------------------------------
 
 **File setup** 

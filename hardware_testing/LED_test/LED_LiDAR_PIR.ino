@@ -6,14 +6,13 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:40 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:13:41 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 21:24:24 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @todo write this one :)
  */
-
 
 #include <Arduino.h>
 #include <WiFi.h>

@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:35:09 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:10:38 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 21:50:23 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@ const int	ledPin = 2;
 
 int	readDistance()
 {
-	int	distance = -1;
+	int					distance = -1;
+	unsigned long		startMillis = millis();
 
 	while (Serial2.available())
 	{
+		if (millis() - startMillis > 1000) // i second timeout
+		{
+			Serial.println("Timeout waiting for LiDAR data");
+			return -1;
+		}
 		if (Serial2.read() == 0x59) // assuming 0x59 is start byte
 		{
 			if (Serial2.read() == 0x59) // another 0x59 byte to confirm
@@ -47,16 +53,13 @@ void	setup()
 	Serial.println("Testing LiDAR sensor");
 
 	pinMode(ledPin, OUTPUT);
-
-	delay(30000); 				// allow 30 seconds for the PIR sensor to stabilize
-	Serial.println("LiDAR sensor ready");
 }
 
 void	loop()
 {
 	int	distance = readDistance();
 
-	if (distance > 0 && distance < 200)
+	if (distance > 0 && distance < 200)	// motion detected within 2 meters
 	{
 		Serial.print("Motion detected on LiDAR at distance: ");
 		Serial.println(distance);

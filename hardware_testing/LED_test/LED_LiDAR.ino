@@ -6,15 +6,9 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:13:34 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/11/30 21:51:05 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-/**
- * @todo fix to have uniform as everything else
- * check this works..
- */
-
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -23,29 +17,33 @@
 #include <Adafruit_NeoPixel.h>
 #include <LiDAR_lite.h>
 
-// LiDAR configuration
-#define LiDAR_RX 16 // ESP32 TX 
-#define LiDAR_TX 17 // ESP32 RX
+const int	lidarRX = 16;
+const int	lidarTX = 17;
+const int	ledPin = 12;
+const int	mosfetPin = 14;
 
-// LED configuration
-#define LED_PIN 12 // GPIO connected to LED strip
-#define NUM_LEDS 60 /** @todo I think mine have 115 - check this */
-CRGB	leds[NUM_LEDS]	/** @todo I don't know what this is */
+#define NUM_LEDS 60
+CRGB	leds[NUM_LEDS];
 
-// read distance from TF-Luna
-int		readDistance()
+int	readDistance()
 {
-	int	distance = -1;
-	
+	int					distance = -1;
+	unsigned long		startMillis = millis();
+
 	while (Serial2.available())
 	{
-		if (Serial2.read() == 0.59) // start of frame
+		if (millis() - startMillis > 1000) // i second timeout
 		{
-			if (Serial2.read() == 0.59) // confirmation
+			Serial.println("Timeout waiting for LiDAR data");
+			return -1;
+		}
+		if (Serial2.read() == 0x59) // assuming 0x59 is start byte
+		{
+			if (Serial2.read() == 0x59) // another 0x59 byte to confirm
 			{
-				uint8_t	low = Serial2.read();
-				uint8_t	high = Serial2.read();
-				distance = (high << 8) + low;
+				uint8_t low = Serial2.read(); // read high byte
+				uint8_t high = Serial2.read(); // read low byte
+				distance = (high << 8) + low; // combine for full distance
 				break ;
 			}
 		}
@@ -55,20 +53,16 @@ int		readDistance()
 
 void	setup()
 {
-	/** @todo don't i need pinMode in/out specification? - both  */
+	Serial.begin(115200);
+	Serial2.begin(115200, SERIAL_8N1, lidarRX, lidarTX); // UART config instead of pinMode
+	Serial.println("Testing LiDAR sensor with LED strip");
 
-	// LiDAR initialisation
-	Serial2.begin(115200, SERIAL_8N1, LiDAR_RX, LiDAR_TX);	// hardware serial for LiDAR
-	
-	// LED initialisation
-	FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+	pinMode(mosfetPin, OUTPUT);
+	digitalWrite(mosfetPin, LOW);
+	FastLED.addLeds<WS2812, ledPin, GRB>(leds, NUM_LEDS);
 	
 	FastLED.clear();
 	FastLED.show();
-
-	Serial.begin(115200);
-	Serial.println("ESP32 testing LED and LiDAR control");
-
 }
 
 void	loop()
@@ -79,21 +73,19 @@ void	loop()
 	{
 		Serial.print("Motion detected on LiDAR at distance: ");
 		Serial.println(distance);
-		
-		// light up LEDs with colour wave effect
+		digitalWrite(mosfetPin, HIGH);
+
 		for (int i = 0; i < NUM_LEDS; i++)
 		{
-			leds[i] = CHSV(i * 10, 255, 255); // rainbow effect
-			FastLED.show();
-			delay(1000);
+			leds[i] = CHSV(i * 10, 255, 255);
 		}
+		FastLED.show();
 	}
 	else
 	{
+		digitalWrite(mosfetPin, LOW);
 		FastLED.clear();
 		FastLED.show();
 	}
-	
-	delay(1000);
+	delay(100);
 }
-
