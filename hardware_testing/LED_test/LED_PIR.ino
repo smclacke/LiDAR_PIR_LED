@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:34:37 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:45:10 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/12/01 14:04:36 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ CRGB	leds[NUM_LEDS]; // Declare the LED array for FastLED to control
 void	setup()
 {
 	Serial.begin(115200);
- 	Serial.println("Testing LED and PIR control");
+ 	Serial.println("Testing PIR sensor with LED strip");
 	
 	pinMode(pirPin, INPUT);
 	pinMode(mosfetPin, OUTPUT);

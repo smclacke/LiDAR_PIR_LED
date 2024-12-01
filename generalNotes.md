@@ -12,7 +12,9 @@
 	for serial - must also init it iwith Serial.begin(baut rate)
 	if using Serial2 (for LiDAR), still need the initial Serial.begin() call
 
-4) MOSFET gate  = 14
+4) MOSFET gate  = 14 - does pin matter? check which pin everytime!
+
+5) CHSV = representation of an HSV pixel (hue, saturation, value (aka brightness))
 
 ------------------------------------------------------------------
 

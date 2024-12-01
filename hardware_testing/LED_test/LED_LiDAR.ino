@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:28 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:51:05 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/12/01 14:28:46 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	readDistance()
 	int					distance = -1;
 	unsigned long		startMillis = millis();
 
-	while (Serial2.available())
+	while (true)
 	{
-		if (millis() - startMillis > 1000) // i second timeout
+		if (millis() - startMillis > 1000) // 1 second timeout
 		{
 			Serial.println("Timeout waiting for LiDAR data");
 			return -1;
 		}
-		if (Serial2.read() == 0x59) // assuming 0x59 is start byte
+		if (Serial2.available() && Serial2.read() == 0x59) // assuming 0x59 is start byte
 		{
-			if (Serial2.read() == 0x59) // another 0x59 byte to confirm
+			if (Serial2.available() && Serial2.read() == 0x59) // another 0x59 byte to confirm
 			{
 				uint8_t low = Serial2.read(); // read high byte
 				uint8_t high = Serial2.read(); // read low byte
@@ -47,6 +47,7 @@ int	readDistance()
 				break ;
 			}
 		}
+		
 	}
 	return distance;
 }
