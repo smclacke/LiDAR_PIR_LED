@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 18:48:20 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/11/30 21:45:27 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/12/01 14:50:43 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <FastLED.h>
 #include <wire.h>
 #include <Adafruit_NeoPixel.h>
+#include <crgb.h>
 
 const int	ledPin = 12; // GPIO connected to LED strip
 const int	mosfetPin = 14;

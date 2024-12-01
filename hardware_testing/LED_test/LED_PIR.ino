@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:34:37 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/12/01 14:04:36 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/12/01 14:50:40 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <wire.h>
 #include <Adafruit_NeoPixel.h>
 #include <LiDAR_lite.h>
+#include <crgb.h>
 
 const int	pirPin = 13;
 const int	ledPin = 12;

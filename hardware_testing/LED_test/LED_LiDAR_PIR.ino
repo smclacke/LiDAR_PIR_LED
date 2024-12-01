@@ -6,7 +6,7 @@
 /*   By: smclacke <smclacke@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/30 17:54:40 by smclacke      #+#    #+#                 */
-/*   Updated: 2024/12/01 14:30:44 by smclacke      ########   odam.nl         */
+/*   Updated: 2024/12/01 14:50:29 by smclacke      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <wire.h>
 #include <Adafruit_NeoPixel.h>
 #include <LiDAR_lite.h>
+#include <crgb.h>
 
 const int	lidarRX = 16;
 const int	lidarTX = 17;
